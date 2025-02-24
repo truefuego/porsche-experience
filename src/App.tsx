@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
+import VideoParallax from "./components/VideoParallax";
+import Lenis from "lenis";
 
 const App:React.FC = () => {
+
+  useEffect(() => {
+    const lenis = new Lenis();
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+  }, [])
+
   return (
     <div>
-      <h1 className="text-slate-500 text-5xl">Porsche Experience</h1>
+      <VideoParallax />
+      <p className="h-[600vh]">hi</p>
     </div>
   )
 }
