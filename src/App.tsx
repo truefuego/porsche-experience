@@ -16,7 +16,9 @@ const App:React.FC = () => {
   return (
     <div>
       <VideoParallax />
-      <p className="h-[600vh]">hi</p>
+      <div className="h-screen bg-gray-900 text-white flex items-center justify-center">
+        <h1 className="text-3xl">Next Section</h1>
+      </div>
     </div>
   )
 }
