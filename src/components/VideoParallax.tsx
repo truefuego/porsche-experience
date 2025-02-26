@@ -2,11 +2,13 @@ import React, { useRef, useEffect, useState } from "react";
 import PorscheExperience from "../assets/videos/porsche-experience-video.mp4";
 import { motion } from "framer-motion";
 import VideoParallaxDetailsScreenWrapper from "./VideoParallaxDetailsScreenWrapper";
+import ScrollToSectionButton from "./ScrollToSectionButton";
 
 const VideoParallax: React.FC = () => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
     const [scrollProgress, setScrollProgress] = useState(0);
+    const firstDivRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -42,12 +44,20 @@ const VideoParallax: React.FC = () => {
                     muted
                     className="fixed w-full h-full object-cover -z-10"
                 />
-                <VideoParallaxDetailsScreenWrapper />
-                <VideoParallaxDetailsScreenWrapper />
-                <VideoParallaxDetailsScreenWrapper />
-                <VideoParallaxDetailsScreenWrapper />
-                <VideoParallaxDetailsScreenWrapper />
-                <VideoParallaxDetailsScreenWrapper />
+                <VideoParallaxDetailsScreenWrapper classes="w-screen">
+                    <ScrollToSectionButton componentRef={firstDivRef} texts={["Scroll Down", "Track Performance", "German Engineering"]} />
+                    <div className="h-screen flex w-screen items-end justify-end">
+                        <h1 className="text-9xl">911 GT3 R</h1>
+                    </div>
+                </VideoParallaxDetailsScreenWrapper>
+                <VideoParallaxDetailsScreenWrapper offset={0.85}>
+                    <div ref={firstDivRef} className="flex h-screen w-screen items-center">
+                        <h1 className="text-9xl">911 GT3 R</h1>
+                    </div>
+                </VideoParallaxDetailsScreenWrapper>
+                <VideoParallaxDetailsScreenWrapper>
+                    <h1 className="text-9xl">911 GT3 R</h1>
+                </VideoParallaxDetailsScreenWrapper>
             </motion.div>
         </div>
     );

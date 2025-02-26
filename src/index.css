@@ -1,5 +1,10 @@
 @import "tailwindcss";
+@import './assets/fonts/fonts.css';
 
 ::-webkit-scrollbar {
     width: 0px;
+}
+
+:root {
+    font-family: porsche-next;
 }
