@@ -3,6 +3,7 @@ import PorscheExperience from "../assets/videos/porsche-experience-video.mp4";
 import { useScroll } from "framer-motion";
 import VideoParallaxDetailsScreenWrapper from "./VideoParallaxDetailsScreenWrapper";
 import ScrollToSectionButton from "./ScrollToSectionButton";
+import SidePanelWrapper from "./SidePanelWrapper";
 
 const VideoParallax: React.FC = () => {
     const videoRef = useRef<HTMLVideoElement>(null);
@@ -13,6 +14,8 @@ const VideoParallax: React.FC = () => {
       offset: ["start start", "end end"],
     });
     const [scrollProgress, setScrollProgress] = useState(0);
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -61,7 +64,7 @@ const VideoParallax: React.FC = () => {
                         scrollYProgress={scrollYProgress}
                         index={1}
                     >
-                        <p className="text-4xl text-white">Porsche GT3 R</p>
+                        <p className="text-4xl text-white" onClick={() => setIsModalOpen(true)}>Porsche GT3 R</p>
                     </VideoParallaxDetailsScreenWrapper>
                     <VideoParallaxDetailsScreenWrapper
                         scrollYProgress={scrollYProgress}
@@ -71,6 +74,9 @@ const VideoParallax: React.FC = () => {
                     </VideoParallaxDetailsScreenWrapper>
                 </div>
             </div>
+            <SidePanelWrapper isVisible={isModalOpen} setIsVisible={setIsModalOpen}>
+                <p className="text-5xl text-black">hi</p>
+            </SidePanelWrapper>
         </div>
     );
 };

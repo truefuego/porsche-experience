@@ -13,3 +13,10 @@ export interface IScrollToSectionButtonProps {
     texts: string[];
     scrollOffset?: number;
 };
+
+export interface ISidePanelWrapperProps {
+    children: React.ReactNode;
+    classes?: string;
+    isVisible: boolean; 
+    setIsVisible: (isVisible: boolean) => void;
+};
