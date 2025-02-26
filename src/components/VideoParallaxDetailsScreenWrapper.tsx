@@ -1,37 +1,23 @@
-import React, { useEffect, useRef } from 'react';
-import { motion, useAnimation } from 'framer-motion';
+import React from 'react';
+import { motion, useTransform } from 'framer-motion';
 import { IVideoParallaxDetailsScreenWrapperProps } from './type';
 
-const VideoParallaxDetailsScreenWrapper: React.FC<IVideoParallaxDetailsScreenWrapperProps> = ({ classes, children, offset = 0.8 }) => {
-  const controls = useAnimation();
-  const wrapperRef = useRef<HTMLDivElement>(null);
+const VideoParallaxDetailsScreenWrapper: React.FC<IVideoParallaxDetailsScreenWrapperProps> = ({ classes, children, scrollYProgress,  index }) => {
+  const start = index / 8;
+  const end = (index + 1) / 8;
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const element = wrapperRef.current;
-      if (element) {
-        const rect = element.getBoundingClientRect();
-        const threshold = window.innerHeight * offset;
-        if (rect.bottom < threshold) {
-          controls.start({ opacity: 0, transition: { duration: 0.2 } });
-        } else {
-          controls.start({ opacity: 1, transition: { duration: 0.2 } });
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [controls, offset]);
+  const indexOffset = index === 0;
+  const opacity = useTransform(scrollYProgress, [start, start + 0.05, end - 0.01, end], [Number(indexOffset), 1, Number(!indexOffset), 0]);
+  const zIndex = useTransform(scrollYProgress, [start, end], [-index + 1, 0]);
 
   return (
     <motion.div
-      ref={wrapperRef}
-      className={"h-screen text-white flex items-center justify-center" + ` ${classes}`}
-      style={{ opacity: 1 }}
-      animate={controls}
+      key={index}
+      className={`fixed top-0 left-0 w-screen h-screen flex items-center justify-center ${classes}`}
+      style={{
+        opacity,
+        zIndex,
+      }}
     >
       {children}
     </motion.div>
