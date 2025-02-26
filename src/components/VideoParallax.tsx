@@ -1,14 +1,18 @@
 import React, { useRef, useEffect, useState } from "react";
 import PorscheExperience from "../assets/videos/porsche-experience-video.mp4";
-import { motion } from "framer-motion";
+import { useScroll } from "framer-motion";
 import VideoParallaxDetailsScreenWrapper from "./VideoParallaxDetailsScreenWrapper";
 import ScrollToSectionButton from "./ScrollToSectionButton";
 
 const VideoParallax: React.FC = () => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
+    const contentContainerRef = useRef<HTMLDivElement>(null);
+    const { scrollYProgress } = useScroll({
+      target: contentContainerRef,
+      offset: ["start start", "end end"],
+    });
     const [scrollProgress, setScrollProgress] = useState(0);
-    const firstDivRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -31,10 +35,9 @@ const VideoParallax: React.FC = () => {
 
     return (
         <div ref={containerRef}>
-            <motion.div
+            <div
                 className="h-[800vh]"
                 style={{ pointerEvents: scrollProgress === 1 ? "none" : "auto" }}
-                transition={{ duration: 0.5 }}
                 ref={containerRef}
             >
                 <video
@@ -44,21 +47,24 @@ const VideoParallax: React.FC = () => {
                     muted
                     className="fixed w-full h-full object-cover -z-10"
                 />
-                <VideoParallaxDetailsScreenWrapper classes="w-screen">
-                    <ScrollToSectionButton componentRef={firstDivRef} texts={["Scroll Down", "Track Performance", "German Engineering"]} />
-                    <div className="h-screen flex w-screen items-end justify-end">
-                        <h1 className="text-9xl">911 GT3 R</h1>
-                    </div>
-                </VideoParallaxDetailsScreenWrapper>
-                <VideoParallaxDetailsScreenWrapper offset={0.85}>
-                    <div ref={firstDivRef} className="flex h-screen w-screen items-center">
-                        <h1 className="text-9xl">911 GT3 R</h1>
-                    </div>
-                </VideoParallaxDetailsScreenWrapper>
-                <VideoParallaxDetailsScreenWrapper>
-                    <h1 className="text-9xl">911 GT3 R</h1>
-                </VideoParallaxDetailsScreenWrapper>
-            </motion.div>
+                <div ref={containerRef} className="h-[800vh] relative">
+                    <VideoParallaxDetailsScreenWrapper
+                        scrollYProgress={scrollYProgress}
+                        index={0}
+                    >
+                        <div className="w-screen h-screen flex items-center justify-center text-white">
+                            <ScrollToSectionButton texts={["Scroll Down", "Track Performance", "German Engineering"]} scrollOffset={350}/>
+                            <p>hi</p>
+                        </div>
+                    </VideoParallaxDetailsScreenWrapper>
+                    <VideoParallaxDetailsScreenWrapper
+                        scrollYProgress={scrollYProgress}
+                        index={1}
+                    >
+                        <p className="text-4xl text-white">Porsche GT3 R</p>
+                    </VideoParallaxDetailsScreenWrapper>
+                </div>
+            </div>
         </div>
     );
 };

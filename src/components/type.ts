@@ -1,12 +1,15 @@
+import { MotionValue } from "framer-motion";
 import React from "react";
 
 export interface IVideoParallaxDetailsScreenWrapperProps {
     children: React.ReactNode;
     classes?: string;
-    offset?: number;
+    scrollYProgress: MotionValue<number>;
+    index: number;
+    ref?: React.RefObject<HTMLDivElement | null>;
 };
 
-export interface IScrollToSectionButtonProps {  
-    componentRef: React.RefObject<HTMLDivElement | null>;
+export interface IScrollToSectionButtonProps {
     texts: string[];
-}
+    scrollOffset?: number;
+};

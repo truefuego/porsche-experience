@@ -4,7 +4,7 @@ import { ArrowBottomIcon } from '../assets/icons/icons'
 import { IScrollToSectionButtonProps } from './type'
 import { motion } from 'framer-motion';
 
-const ScrollToSectionButton:React.FC<IScrollToSectionButtonProps> = ({ componentRef, texts }) => {
+const ScrollToSectionButton:React.FC<IScrollToSectionButtonProps> = ({ texts, scrollOffset }) => {
     const [isHovering, setIsHovering] = useState<boolean>(false);
 
     const toggleHovering = () => {
@@ -12,7 +12,7 @@ const ScrollToSectionButton:React.FC<IScrollToSectionButtonProps> = ({ component
     };
 
   return (
-    <div className="fixed flex items-center justify-center cursor-pointer bottom-0 left-0 z-10" onClick={() => componentRef?.current?.scrollIntoView({ behavior: "smooth", block: "start" })} onMouseEnter={toggleHovering} onMouseLeave={toggleHovering} >   
+    <div className="fixed flex items-center justify-center cursor-pointer bottom-0 left-0 z-10" onClick={() => window.scrollBy({ top: window.innerHeight +  (scrollOffset || 0), behavior: "smooth" })} onMouseEnter={toggleHovering} onMouseLeave={toggleHovering} >   
         <motion.div 
             className={`bg-[#f00] flex h-12 w-12 items-center justify-center ${isHovering ? 'pt-4' : ''} duration-500 transition-all ease-in-out z-10`}
         >
