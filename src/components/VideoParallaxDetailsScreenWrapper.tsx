@@ -7,7 +7,7 @@ const VideoParallaxDetailsScreenWrapper: React.FC<IVideoParallaxDetailsScreenWra
   const end = (index + 1) / 8;
 
   const indexOffset = index === 0;
-  const opacity = useTransform(scrollYProgress, [start, start + 0.1, end - 0.1, end], [Number(indexOffset), 1, Number(!indexOffset), 0]);
+  const opacity = useTransform(scrollYProgress, [start, start + 0.05, end - 0.01, end], [Number(indexOffset), 1, Number(!indexOffset), 0]);
   const zIndex = useTransform(scrollYProgress, [start, end], [-index + 1, 0]);
 
   return (

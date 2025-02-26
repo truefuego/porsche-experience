@@ -63,6 +63,12 @@ const VideoParallax: React.FC = () => {
                     >
                         <p className="text-4xl text-white">Porsche GT3 R</p>
                     </VideoParallaxDetailsScreenWrapper>
+                    <VideoParallaxDetailsScreenWrapper
+                        scrollYProgress={scrollYProgress}
+                        index={2}
+                    >
+                        <p className="text-4xl text-white">Porsche</p>
+                    </VideoParallaxDetailsScreenWrapper>
                 </div>
             </div>
         </div>
