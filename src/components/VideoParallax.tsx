@@ -4,6 +4,7 @@ import { useScroll } from "framer-motion";
 import VideoParallaxDetailsScreenWrapper from "./VideoParallaxDetailsScreenWrapper";
 import ScrollToSectionButton from "./ScrollToSectionButton";
 import SidePanelWrapper from "./SidePanelWrapper";
+import OpenPanelButton from "./OpenPanelButton";
 
 const VideoParallax: React.FC = () => {
     const videoRef = useRef<HTMLVideoElement>(null);
@@ -55,16 +56,22 @@ const VideoParallax: React.FC = () => {
                         scrollYProgress={scrollYProgress}
                         index={0}
                     >
-                        <div className="w-screen h-screen flex items-center justify-center text-white">
-                            <ScrollToSectionButton texts={["Scroll Down", "Track Performance", "German Engineering"]} scrollOffset={350}/>
-                            <p>hi</p>
+                        <div className="w-screen h-screen flex items-end justify-center text-white">
+                            <ScrollToSectionButton texts={["Scroll Down", "Track Performance", "German Engineering"]} scrollOffset={200}/>
+                            <div className="flex flex-col w-screen mb-16 gap-4">
+                                <p className="text-6xl sm:text-8xl md:text-9xl xl:text-9xl 2xl:text-[10rem] ml-4">Porsche</p>
+                                <p className="text-7xl sm:text-[8rem] md:text-[11rem] xl:text-[16rem] 2xl:text-[19rem] text-end xl:leading-[14rem] mb-0 mr-4">911 GT3 R</p>
+                            </div>
                         </div>
                     </VideoParallaxDetailsScreenWrapper>
                     <VideoParallaxDetailsScreenWrapper
                         scrollYProgress={scrollYProgress}
-                        index={1}
+                        index={.95}
                     >
-                        <p className="text-4xl text-white" onClick={() => setIsModalOpen(true)}>Porsche GT3 R</p>
+                        <div className="w-screen h-screen flex gap-12 flex-col items-center mt-[60vh]">
+                            <p className="text-xl md:text-3xl text-white font-medium" onClick={() => setIsModalOpen(true)}>Engineered for precision and dominance</p>
+                            <OpenPanelButton text="Race-Bred Precision" setIsVisible={setIsModalOpen} classes="" />
+                        </div>
                     </VideoParallaxDetailsScreenWrapper>
                     <VideoParallaxDetailsScreenWrapper
                         scrollYProgress={scrollYProgress}

@@ -20,3 +20,9 @@ export interface ISidePanelWrapperProps {
     isVisible: boolean; 
     setIsVisible: (isVisible: boolean) => void;
 };
+
+export interface IOpenPanelButtonProps {
+    text: string;
+    classes?: string;
+    setIsVisible: (isVisible: boolean) => void;
+};
