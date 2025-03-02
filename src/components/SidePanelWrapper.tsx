@@ -6,7 +6,7 @@ const SidePanelWrapper:React.FC<ISidePanelWrapperProps> = ({ children, isVisible
   return (
     <div className={`fixed top-0 right-0 h-screen text-white flex flex-col items-start justify-end transition-all duration-300 ${isVisible ? ' w-screen' : 'w-0'} ${classes}`}>
       <div className='absolute w-screen h-screen cursor-pointer' onClick={() => setIsVisible(false)} />
-      <div className={`absolute h-screen transition-all right-0 bg-amber-50 duration-200 z-10 delay-100 ${isVisible ? 'w-screen md:w-[65%]' : 'w-0'}`}>
+      <div className={`absolute h-screen transition-all right-0 bg-amber-50 duration-200 z-0 delay-100 ${isVisible ? 'w-screen md:w-[65%]' : 'w-0'}`}>
         <div onClick={() => setIsVisible(false)} className='cursor-pointer m-8'>
           <CrossIconThin />
         </div>

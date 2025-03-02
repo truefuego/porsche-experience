@@ -19,6 +19,9 @@ const App:React.FC = () => {
       <div className="h-screen bg-gray-900 text-white flex items-center justify-center">
         <h1 className="text-3xl">Next Section</h1>
       </div>
+      <div className="h-screen bg-gray-900 text-white flex items-center justify-center">
+        <h1 className="text-3xl">Next Section</h1>
+      </div>
     </div>
   )
 }

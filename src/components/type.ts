@@ -7,6 +7,9 @@ export interface IVideoParallaxDetailsScreenWrapperProps {
     scrollYProgress: MotionValue<number>;
     index: number;
     ref?: React.RefObject<HTMLDivElement | null>;
+    isLast?: boolean;
+    isModalOpen?: boolean;
+    setModalOpen?: (isVisible: boolean) => void;
 };
 
 export interface IScrollToSectionButtonProps {
