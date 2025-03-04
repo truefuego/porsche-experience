@@ -31,3 +31,31 @@ export interface RotatingTextProps
   splitLevelClassName?: string;
   elementLevelClassName?: string;
 }
+
+export interface IDecryptedTextProps {
+    text: string
+    speed?: number
+    maxIterations?: number
+    sequential?: boolean
+    revealDirection?: 'start' | 'end' | 'center'
+    useOriginalCharsOnly?: boolean
+    characters?: string
+    className?: string
+    encryptedClassName?: string
+    parentClassName?: string
+    animateOn?: 'view' | 'hover'
+    [key: string]: any
+};
+
+export interface ICountUpProps {
+    to: number;
+    from?: number;
+    direction?: "up" | "down";
+    delay?: number;
+    duration?: number;
+    className?: string;
+    startWhen?: boolean;
+    separator?: string;
+    onStart?: () => void;
+    onEnd?: () => void;
+};
